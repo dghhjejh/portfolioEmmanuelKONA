@@ -10,15 +10,27 @@
             :src="project.image" 
             :alt="project.title"
           >
-          <!-- Carrousel pour projets avec plusieurs images -->
-          <div v-else-if="project.images" class="image-carousel">
-            <img 
-              v-for="(img, index) in project.images" 
-              :key="index"
-              :src="img.image" 
-              :alt="project.title"
-            >
-          </div>
+          <!-- Swiper pour projets avec plusieurs images -->
+          <swiper
+            v-else-if="project.images"
+            :modules="[Pagination, Navigation, Autoplay]"
+            :slides-per-view="1"
+            :autoplay="{
+              delay: 3000,
+              disableOnInteraction: false,
+            }"
+            :pagination="{ clickable: true }"
+            :navigation="true"
+            :loop="true"
+          >
+            <swiper-slide v-for="(img, index) in project.images" :key="index">
+              <img 
+                :src="img.image" 
+                :alt="project.title"
+                class="swiper-img"
+              >
+            </swiper-slide>
+          </swiper>
         </div>
 
         <!-- Contenu du projet -->
@@ -62,80 +74,115 @@
     </div>
   </div>
 </template>
-
-
 <script setup>
-    import AccueilListe from "../assets/AccueilListe.png";
-    import authentifationUfood from "../assets/authentifationUfood.png";
-    import mapAccueil from "../assets/mapAccueil.png";
-    import restaurantUFood from "../assets/restaurantUFood.png";
-    import userProfileUfood from "../assets/userProfileUfood.png";
-    import cncApanneau from "../assets/cncApanneau.png";
-    import weatherApp from "../assets/weatherApp.png";
-    import figma from "../assets/figma.png";
-    import todoApp from "../assets/todoApp.png";
-    import searchToDoList from "../assets/searchToDoList.png";
-    const projects = [
-        {
-            title: "Weather App",
-            description: "application de météo permettant de consulter la météo de n'importe quelle ville du monde en temps réel.\n" +
-                "Elle donne de façon détaillée les informations sur la température, la pression atmosphérique, l'humidité, la vitesse du vent tout en prédisant la météo pour les 5 prochains jours.",
-            technologies: ["HTML", "CSS", "JavaScript", "OpenWeatherMap API", "Bootstrap", "Vue.js"],
-            image: weatherApp,
-            link: "https://emmanuelweatherapp.netlify.app/",
-            deploiement: "Netlify"
-        },
-        {
-            title: "UFood",
-            description: "Application sociale permettant aux utilisateurs de découvrir des restaurants et de partager leurs coups de coeur avec leurs amis.\n"+
-            "Elle permet de consulter les menus, les prix, les horaires d'ouverture et de fermeture, les avis des clients et de donner des avis voire noter des restaurants.\n"+
-            "Elle offre deux vues à l'accueil: Le mode map et le mode liste.\n"+
-            "Il est possible d'avoir également à partir de la map, l'itinéraire pour se rendre au restaurant désiré.\n"+
-            "Il faudra tout d'abord s'authentifier avant de pouvoir accéder à certaines fonctionnalités de l'application. L'utilisateur peut avoir des followers et des following.",
-            technologies: ["Vuetify", "Node.js", "UFood API", "leaflet", "MongoDB", "Express.js", "Vue.js", "OAuth"],
-            images : [{image: AccueilListe},
-            {image: authentifationUfood},
-            {image: mapAccueil},
-            {image: restaurantUFood},
-            {image: userProfileUfood}],
-        },
-        {
-            title: "CNC à panneaux",
-            description: "Application permettant de générer des fichiers de découpe pour les CNC.\n"+
-            "L'objectif du projet est de rendre la faisabilité des coupes droites similaire à celle d'une scie à panneau car cette tâche est très difficile à réaliser avec une CNC normale.\n"+
-            "À travers notre appplication l'utilisateur peut faire ses découpes, placer les zones interdites, définir les différents outils utilisés, définir les dimensions, modifier les dimensions, supprimer et déplacer puis exporter le fichier GCODE qu'on pourra par la suite entrer dans la CNC.",
-            technologies: ["Java", "Java Swing"],
-            image: cncApanneau,
-        },
-        {
-            title: "search & todo list app",
-            description: "Ce site web comporte 4 sections. La section Home contient une barre de recherche qui permet de filtrer les noms de pays au fur et à mesure qu'on les écrit.\n"+
-            "La section CardGrids contient une todo list app permettant d'enregistrer une tâche, sa description et de sélectionner la date également",
-            technologies: ["Vue.js", "vuetify", "mongoDb", "pymongo", "python", "FastAPI"],
-            images: [{image: todoApp}, {image: searchToDoList}],
-            link: "https://emmanuelkonamultipageswebsite.netlify.app/",
-            deploiement: ["Netlify", "Render"]
-        },
-        {
-            title: "Application de recherche de logement étudiant",
-            description: "créer les prototypes d'interface de l'application pour differents supports (mobile, tablette, desktop)."+
-            "Pour mener à bien le projet nous avons eu à faire une recherche sur l'expérience utilisateur pour mieux comprendre les besoins des utilisateurs, les fonctionnalités de l'application, les contraintes techniques, les contraintes de temps et les contraintes budgétaires.\n"+
-            "Nous avons également évaluer les maquettes",
-            technologies: "Figma",
-            image: figma,
-        },
-        {
-            title: "Enregistrement des bornes de la ville de Québec",
-            description: "projet consistant à developper une hierarchie de classes (Borne et ses dérivées) tout testant rigoureusement ces classes.\n"+
-            "J'ai également créé un programme principal permettant de gérer un registre de bornes avec des opérations CRUD (Creation, ajout, affichage).",
-            technologies: ["C++", "googletest", "Netbeans GUI"],
-        },
-        {
-            title: "Jeu Quoridor",
-            description: "Implémentation du jeu Quoridor ayant une fenêtre graphique avec trois modes de jeu: Humain vs Humain, Humain vs bot, bot vs bot.\n",
-            technologies: ["python", "Rest API", "minmax", "turtle graphics"],
-        },
-        ]
+import AccueilListe from "../assets/AccueilListe.png";
+import authentifationUfood from "../assets/authentifationUfood.png";
+import mapAccueil from "../assets/mapAccueil.png";
+import restaurantUFood from "../assets/restaurantUFood.png";
+import userProfileUfood from "../assets/userProfileUfood.png";
+import cncApanneau from "../assets/cncApanneau.png";
+import weatherApp from "../assets/weatherApp.png";
+import figma from "../assets/figma.png";
+import todoApp from "../assets/todoApp.png";
+import searchToDoList from "../assets/searchToDoList.png";
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Pagination, Navigation, Autoplay } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
+const projects = [
+  {
+    title: "Weather App",
+    description:
+      "application de météo permettant de consulter la météo de n'importe quelle ville du monde en temps réel.\n" +
+      "Elle donne de façon détaillée les informations sur la température, la pression atmosphérique, l'humidité, la vitesse du vent tout en prédisant la météo pour les 5 prochains jours.",
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "OpenWeatherMap API",
+      "Bootstrap",
+      "Vue.js",
+    ],
+    image: weatherApp,
+    link: "https://emmanuelweatherapp.netlify.app/",
+    deploiement: "Netlify",
+  },
+  {
+    title: "UFood",
+    description:
+      "Application sociale permettant aux utilisateurs de découvrir des restaurants et de partager leurs coups de coeur avec leurs amis.\n" +
+      "Elle permet de consulter les menus, les prix, les horaires d'ouverture et de fermeture, les avis des clients et de donner des avis voire noter des restaurants.\n" +
+      "Elle offre deux vues à l'accueil: Le mode map et le mode liste.\n" +
+      "Il est possible d'avoir également à partir de la map, l'itinéraire pour se rendre au restaurant désiré.\n" +
+      "Il faudra tout d'abord s'authentifier avant de pouvoir accéder à certaines fonctionnalités de l'application. L'utilisateur peut avoir des followers et des following.",
+    technologies: [
+      "Vuetify",
+      "Node.js",
+      "UFood API",
+      "leaflet",
+      "MongoDB",
+      "Express.js",
+      "Vue.js",
+      "OAuth",
+    ],
+    images: [
+      { image: AccueilListe },
+      { image: authentifationUfood },
+      { image: mapAccueil },
+      { image: restaurantUFood },
+      { image: userProfileUfood },
+    ],
+  },
+  {
+    title: "CNC à panneaux",
+    description:
+      "Application permettant de générer des fichiers de découpe pour les CNC.\n" +
+      "L'objectif du projet est de rendre la faisabilité des coupes droites similaire à celle d'une scie à panneau car cette tâche est très difficile à réaliser avec une CNC normale.\n" +
+      "À travers notre appplication l'utilisateur peut faire ses découpes, placer les zones interdites, définir les différents outils utilisés, définir les dimensions, modifier les dimensions, supprimer et déplacer puis exporter le fichier GCODE qu'on pourra par la suite entrer dans la CNC.",
+    technologies: ["Java", "Java Swing"],
+    image: cncApanneau,
+  },
+  {
+    title: "search & todo list app",
+    description:
+      "Ce site web comporte 4 sections. La section Home contient une barre de recherche qui permet de filtrer les noms de pays au fur et à mesure qu'on les écrit.\n" +
+      "La section CardGrids contient une todo list app permettant d'enregistrer une tâche, sa description et de sélectionner la date également",
+    technologies: [
+      "Vue.js",
+      "vuetify",
+      "mongoDb",
+      "pymongo",
+      "python",
+      "FastAPI",
+    ],
+    images: [{ image: todoApp }, { image: searchToDoList }],
+    link: "https://emmanuelkonamultipageswebsite.netlify.app/",
+    deploiement: ["Netlify", "Render"],
+  },
+  {
+    title: "Application de recherche de logement étudiant",
+    description:
+      "créer les prototypes d'interface de l'application pour differents supports (mobile, tablette, desktop)." +
+      "Pour mener à bien le projet nous avons eu à faire une recherche sur l'expérience utilisateur pour mieux comprendre les besoins des utilisateurs, les fonctionnalités de l'application, les contraintes techniques, les contraintes de temps et les contraintes budgétaires.\n" +
+      "Nous avons également évaluer les maquettes",
+    technologies: "Figma",
+    image: figma,
+  },
+  {
+    title: "Enregistrement des bornes de la ville de Québec",
+    description:
+      "projet consistant à developper une hierarchie de classes (Borne et ses dérivées) tout testant rigoureusement ces classes.\n" +
+      "J'ai également créé un programme principal permettant de gérer un registre de bornes avec des opérations CRUD (Creation, ajout, affichage).",
+    technologies: ["C++", "googletest", "Netbeans GUI"],
+  },
+  {
+    title: "Jeu Quoridor",
+    description:
+      "Implémentation du jeu Quoridor ayant une fenêtre graphique avec trois modes de jeu: Humain vs Humain, Humain vs bot, bot vs bot.\n",
+    technologies: ["python", "Rest API", "minmax", "turtle graphics"],
+  },
+];
 </script>
 
 <style scoped>
@@ -269,9 +316,42 @@
   .projects-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .section-title {
     font-size: 2rem;
   }
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+:deep(.swiper-pagination-bullet) {
+  background: white;
+}
+
+:deep(.swiper-button-next),
+:deep(.swiper-button-prev) {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+
+:deep(.swiper-button-next::after),
+:deep(.swiper-button-prev::after) {
+  font-size: 16px;
+}
+
+:deep(.swiper-pagination) {
+  bottom: 0;
 }
 </style>
