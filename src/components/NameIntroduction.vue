@@ -38,7 +38,7 @@
 <script setup>
     const socials = {
         github: "https://github.com/dghhjejh",
-        linkedin: "https://linkedin.com/in/emmanuel-kona",
+        linkedin: "https://linkedin.com/in/emmanuel-kona-885aa0264",
         email: "konaemmanuel0@gmail.com",
         phone: "+15817779770",
     };

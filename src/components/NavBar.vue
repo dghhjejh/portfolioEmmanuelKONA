@@ -1,13 +1,13 @@
 <template>
     <nav>
         <div class="menu-item">
-        <router-link to="/">Name & Introduction</router-link>
+        <router-link to="/">Nom & Introduction</router-link>
         </div>
         <div class="menu-item">
         <router-link to="/MyExperiences">Experiences</router-link>
         </div>
         <div class="menu-item">
-        <router-link to="/MyProjects">Projects</router-link>
+        <router-link to="/MyProjects">Projets</router-link>
         </div>
     </nav>
 </template>

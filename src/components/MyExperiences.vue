@@ -36,6 +36,35 @@
       </div>
     </div>
   </div>
+  <div class="experiences-section">
+      <h2 class="section-title">Expériences Professionnelles</h2>
+      <div class="timeline">
+        <div
+          v-for="(experience, index) in experienceDeTravail"
+          :key="index"
+          class="timeline-item"
+          :class="{ right: index % 2 !== 0 }"
+        >
+          <div class="timeline-content">
+            <div class="experience-header">
+              <h3 class="experience-title">{{ experience.title }}</h3>
+              <span class="experience-date">{{ experience.date }}</span>
+            </div>
+
+            <div class="experience-details">
+              <div class="company">
+                <i class="fas fa-building"></i>
+                {{ experience.company }}
+              </div>
+              <div class="location">
+                <i class="fas fa-map-marker-alt"></i>
+                {{ experience.location }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </template>
 
 <script setup>
@@ -66,7 +95,7 @@ const bourse = {
   date: "Automne 2023",
 };
 
-/*const experienceDeTravail = [
+const experienceDeTravail = [
   {
     title: "Auxiliaire administratif",
     company: "Service des Résidences de l'Université Laval",
@@ -85,17 +114,12 @@ const bourse = {
     location: "Lomé, Togo",
     date: "Janvier 2022 - Juin 2022",
   },
-];*/
+];
 </script>
 
 <style scoped>
 .education-section {
   padding: 4rem 2rem;
-  background-color: #1a1a1a;
-  color: white;
-  min-height: 100vh;
-}
-.experience-section {
   background-color: #1a1a1a;
   color: white;
   min-height: 100vh;
@@ -231,6 +255,147 @@ const bourse = {
 
   .date {
     align-self: flex-start;
+  }
+}
+.experiences-section {
+  padding: 4rem 2rem;
+  background-color: #1a1a1a;
+  min-height: 100vh;
+}
+
+.section-title {
+  text-align: center;
+  color: #fff;
+  font-size: 2.5rem;
+  margin-bottom: 4rem;
+}
+
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.timeline::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  background: #4a9eff;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  padding: 1rem;
+  position: relative;
+  width: 50%;
+  left: 0;
+  margin-bottom: 2rem;
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #4a9eff;
+  border: 4px solid #1a1a1a;
+  border-radius: 50%;
+  top: 50%;
+  right: -10px;
+  transform: translateY(-50%);
+}
+
+.timeline-item.right {
+  left: 50%;
+}
+
+.timeline-item.right::after {
+  left: -10px;
+}
+
+.timeline-content {
+  padding: 1.5rem;
+  background: #2a2a2a;
+  border-radius: 10px;
+  position: relative;
+  margin-right: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.timeline-item.right .timeline-content {
+  margin-right: 0;
+  margin-left: 2rem;
+}
+
+.timeline-content:hover {
+  transform: translateY(-5px);
+}
+
+.experience-header {
+  margin-bottom: 1rem;
+}
+
+.experience-title {
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.experience-date {
+  color: #4a9eff;
+  font-size: 0.9rem;
+}
+
+.experience-details {
+  color: #cccccc;
+}
+
+.company,
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.fas {
+  color: #4a9eff;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .timeline::after {
+    left: 31px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    left: 0;
+  }
+
+  .timeline-item.right {
+    left: 0;
+  }
+
+  .timeline-item::after {
+    left: 21px;
+  }
+
+  .timeline-content {
+    margin-left: 4rem;
+    margin-right: 0;
+  }
+
+  .timeline-item.right .timeline-content {
+    margin-left: 4rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
   }
 }
 </style>
