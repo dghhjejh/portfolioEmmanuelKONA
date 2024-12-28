@@ -19,8 +19,12 @@ header {
   align-items: center;
   background-color: black;
   padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
-
 .logo {
   color: #FF0000;
   padding: 10px 20px;
