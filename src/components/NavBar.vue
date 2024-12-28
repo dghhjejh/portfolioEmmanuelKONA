@@ -36,6 +36,7 @@ nav {
   width: 100%;
   background-color: black;
   position: relative;
+  height: 12px;
 }
 
 .nav-items {
@@ -45,7 +46,7 @@ nav {
 
 .menu-item {
   color: #FFF;
-  padding: 10px 20px;
+  padding: 10px 15px;
   position: relative;
   text-align: center;
   border-bottom: 3px solid transparent;
@@ -83,6 +84,7 @@ nav {
 @media (max-width: 768px) {
   nav {
     padding: 0;
+    margin: 0 5px;
   }
 
   .burger-menu {

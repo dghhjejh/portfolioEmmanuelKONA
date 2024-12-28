@@ -76,8 +76,8 @@ const education = [
     date: "Janvier 2023 - Décembre 2026",
   },
   {
-    title: "Études de Doctorat en Médecine",
-    school: "École du service de Santé des Armées de Lomé",
+    title: "Études en Médecine Militaire",
+    school: "École du Service de Santé des Armées de Lomé",
     location: "Lomé, Togo",
     date: "Novembre 2020 - Août 2022",
   },

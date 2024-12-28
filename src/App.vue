@@ -13,6 +13,10 @@ import NavBar from './components/NavBar.vue';
 </script>
 
 <style>
+body{
+  width: 100%;
+  background-color: #1a1a1a;
+}
 header {
   display: flex;
   justify-content: space-between;
