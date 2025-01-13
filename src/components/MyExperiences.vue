@@ -35,6 +35,18 @@
         </div>
       </div>
     </div>
+    <div class="awards-section">
+        <h3 class="awards-title">Compétitions</h3>
+        <div class="award-item">
+          <div class="award-content">
+            <h4 class="award-name">{{ competition.title }}</h4>
+            <div class="award-details">
+              <span class="organization">{{ competition.organization }}</span>
+              <span class="date">{{ competition.date }}</span>
+            </div>
+          </div>
+        </div>
+    </div>
   </div>
   <div class="experiences-section">
       <h2 class="section-title">Expériences Professionnelles</h2>
@@ -94,7 +106,11 @@ const bourse = {
   organization: "Gouvernement du Québec",
   date: "Automne 2023",
 };
-
+const competition = {
+  title: "Covéo Blitz 2025",
+  organization: "Covéo",
+  date: "11 Janvier 2025",
+};
 const experienceDeTravail = [
   {
     title: "Auxiliaire administratif",
