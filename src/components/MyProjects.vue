@@ -133,6 +133,7 @@ const projects = [
       { image: restaurantUFood },
       { image: userProfileUfood },
     ],
+    link:"https://restaurantsocialmediaemmanuelkona.netlify.app/",
   },
   {
     title: "CNC à panneaux",
