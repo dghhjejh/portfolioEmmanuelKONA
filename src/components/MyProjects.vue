@@ -50,7 +50,7 @@
           </div>
 
           <!-- Liens (si disponibles) -->
-          <div class="project-links" v-if="project.link || project.deploiement">
+          <div class="project-links" v-if="project.link || project.frontend">
             <a 
               v-if="project.link" 
               :href="project.link" 
@@ -59,10 +59,18 @@
             >
               Voir le projet
             </a>
-            <div v-if="project.deploiement" class="deployment">
-              <span>Déployé sur: </span>
-              <span v-if="typeof project.deploiement === 'string'">
-                {{ project.deploiement }}
+            <div v-if="project.frontend" class="deployment">
+              <span>Déployé sur:  </span>
+              <span v-if="typeof project.frontend === 'string'">
+                {{ project.frontend }}
+              </span>
+              <span v-else v-for="dep in project.deploiement" :key="dep">
+                {{ dep }}
+              </span>
+            </div>
+            <div v-if="project.backend" class="deployment">
+              <span v-if="typeof project.backend === 'string'">
+                {{ project.backend }}
               </span>
               <span v-else v-for="dep in project.deploiement" :key="dep">
                 {{ dep }}
@@ -91,24 +99,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 const projects = [
-  {
-    title: "Weather App",
-    description:
-      "application de météo permettant de consulter la météo de n'importe quelle ville du monde en temps réel.\n" +
-      "Elle donne de façon détaillée les informations sur la température, la pression atmosphérique, l'humidité, la vitesse du vent tout en prédisant la météo pour les 5 prochains jours.",
-    technologies: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "OpenWeatherMap API",
-      "Bootstrap",
-      "Vue.js",
-    ],
-    image: weatherApp,
-    link: "https://emmanuelweatherapp.netlify.app/",
-    deploiement: "Netlify",
-  },
-  {
+{
     title: "UFood",
     description:
       "Application sociale permettant aux utilisateurs de découvrir des restaurants et de partager leurs coups de coeur avec leurs amis.\n" +
@@ -134,6 +125,7 @@ const projects = [
       { image: userProfileUfood },
     ],
     link:"https://restaurantsocialmediaemmanuelkona.netlify.app/",
+    frontend: "Netlify",
   },
   {
     title: "CNC à panneaux",
@@ -143,6 +135,23 @@ const projects = [
       "À travers notre appplication l'utilisateur peut faire ses découpes, placer les zones interdites, définir les différents outils utilisés, définir les dimensions, modifier les dimensions, supprimer et déplacer puis exporter le fichier GCODE qu'on pourra par la suite entrer dans la CNC.",
     technologies: ["Java", "Java Swing"],
     image: cncApanneau,
+  },
+  {
+    title: "Weather App",
+    description:
+      "application de météo permettant de consulter la météo de n'importe quelle ville du monde en temps réel.\n" +
+      "Elle donne de façon détaillée les informations sur la température, la pression atmosphérique, l'humidité, la vitesse du vent tout en prédisant la météo pour les 5 prochains jours.",
+    technologies: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "OpenWeatherMap API",
+      "Bootstrap",
+      "Vue.js",
+    ],
+    image: weatherApp,
+    link: "https://emmanuelweatherapp.netlify.app/",
+    frontend: "Netlify",
   },
   {
     title: "search & todo list app",
@@ -159,7 +168,8 @@ const projects = [
     ],
     images: [{ image: todoApp }, { image: searchToDoList }],
     link: "https://emmanuelkonamultipageswebsite.netlify.app/",
-    deploiement: ["Netlify", "Render"],
+    frontend: "Netlify",
+    backend: "Render"
   },
   {
     title: "Application de recherche de logement étudiant",
